@@ -1,0 +1,27 @@
+{
+  "name": "lax",
+  "version": "0.2.0",
+  "description": "Lax. It's like a Slack bot, but a whole hell of a lot more powerful. Oh, and it's for Discord.",
+  "repository": "https://github.com/ergodark/lax",
+  "author": "Xunnamius",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "commander": "^2.9.0",
+    "discord.js": "^11.1.0",
+    "erlpack": "github:hammerandchisel/erlpack",
+    "libsodium-wrappers": "^0.5.1",
+    "node-opus": "^0.2.6",
+    "pkginfo": "^0.4.0",
+    "rejoinder": "0.3.x",
+    "restify": "^4.1.1",
+    "shelljs": "^0.7.0",
+    "uws": "^0.14.5"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}

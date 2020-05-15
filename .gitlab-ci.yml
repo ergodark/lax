@@ -1,0 +1,67 @@
+stages:
+# - newsite
+# - build
+# - test
+  - deploy
+
+# .newsite:make: &makedef
+#   script:
+#     - sudo darktools newsite --non-interactive --if-not-exists
+#   variables:
+#     DARKTOOLS_FQDN: "lax.xunn.io"
+#   stage: newsite
+#   tags:
+#     - darktools
+#     - local
+
+# newsite:make_production:
+#   <<: *makedef
+#   environment: production
+#   only: master
+
+# newsite:make_develop:
+#   <<: *makedef
+#   environment: staging
+#   only: develop
+
+deploy:master_to_www:
+  script:
+    - /home/build-scripts/deploy/lax-master
+  stage: deploy
+  environment: production
+  variables:
+    WEBMIRROR_JSON_CONFIG: |+
+      {
+        "branches": {
+          "master": {
+            "web_public_dir": "www",
+            "web_push_target": "lax.xunn.io/main"
+          }
+        }
+      }
+  only:
+    - master
+    - triggers
+  tags:
+    - deploy
+
+deploy:develop_to_www:
+  script:
+    - /home/build-scripts/deploy/lax-develop
+  stage: deploy
+  environment: staging
+  variables:
+    WEBMIRROR_JSON_CONFIG: |+
+      {
+        "branches": {
+          "develop": {
+            "web_public_dir": "www",
+            "web_push_target": "lax.xunn.io/develop"
+          }
+        }
+      }
+  only:
+    - develop
+    - triggers
+  tags:
+    - deploy

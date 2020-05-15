@@ -1,0 +1,43 @@
+apps:
+  - name       : "lax-main"
+    script     : "/var/www/gitlab/lax.xunn.io/main/bot/main.js"
+    cwd        : "/var/www/gitlab/lax.xunn.io/main/"
+    out_file   : "/var/log/lax/lax-main.pm2.log"
+    error_file : "/var/log/lax/lax-main.pm2.log"
+    merge_logs : true
+    autorestart: true
+    env:
+      APP_DEBUG_LEVEL   : 0
+      WORKS_WITH_WINDOWS: true
+      APP_CONTEXT       : "lax-main"
+      LOG_DIR_PATH      : "/var/log/lax/"
+      SERVER_NAME       : "lax discord bot server"
+
+  - name       : "lax-edge"
+    script     : "/var/www/gitlab/lax.xunn.io/develop/bot/main.js"
+    cwd        : "/var/www/gitlab/lax.xunn.io/develop/"
+    out_file   : "/var/log/lax/lax-edge.pm2.log"
+    error_file : "/var/log/lax/lax-edge.pm2.log"
+    merge_logs : true
+    autorestart: true
+    env:
+      APP_DEBUG_LEVEL   : 1
+      WORKS_WITH_WINDOWS: true
+      APP_CONTEXT       : "lax-edge"
+      LOG_DIR_PATH      : "/var/log/lax/"
+      SERVER_NAME       : "lax discord bot server (edge preview)"
+
+  - name       : "lax-xunn"
+    script     : "/home/xunnamius/repos/web-mirrored/lax.xunn.io/bot/main.js"
+    cwd        : "/home/xunnamius/repos/web-mirrored/lax.xunn.io/"
+    out_file   : "/home/xunnamius/repos/web-mirrored/lax.xunn.io/lax-edge.pm2.log"
+    error_file : "/home/xunnamius/repos/web-mirrored/lax.xunn.io/lax-edge.pm2.log"
+    merge_logs : true
+    autorestart: false
+    max_restarts: 1
+    env:
+      APP_DEBUG_LEVEL   : 2
+      WORKS_WITH_WINDOWS: true
+      APP_CONTEXT       : "lax-xunn"
+      LOG_DIR_PATH      : ""
+      SERVER_NAME       : "lax discord bot server (xunn-develop debug)"
