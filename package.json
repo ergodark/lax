@@ -18,7 +18,7 @@
     "pkginfo": "^0.4.0",
     "rejoinder": "0.3.x",
     "restify": "^4.1.1",
-    "shelljs": "^0.7.0",
+    "shelljs": "^0.8.4",
     "uws": "^0.14.5"
   },
   "engines": {
